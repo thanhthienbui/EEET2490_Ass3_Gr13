@@ -13,7 +13,7 @@ MAIN GAMEPLAY:
   - Can push nearby boulders by pressing S why moving.
   - Throw falling boulders resting on top by press W (cannot move why the boulder is on top of you) before timer run out and the boulder crush you.
   
-  - All object will obey grid of the game. (Sis will move one tile/ move)
+  - All object will obey grid of the game. (Sis will move freely, maybe changed in the future)
   - Boulder fall at steady pace, will rest on top of Sisyhus (PC) and be thrown if pressed, if collided with boulder with opposite vector will break, else will fall down (if bottom is empty, fall down, else fall to left or right side if either are empty)
   - Bombs fall the same but eplode either 2x2 tiles when touch down floor or 4x4 tiles if colllide mid air and os un catchable.
   - Lightnigg will just delete one column, cannnot be catched and do not fall. There is a outline of where it strikes.
