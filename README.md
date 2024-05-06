@@ -10,13 +10,15 @@ INTRO: Custom video frames for introduction, background, final cutscenes and dea
 FONTS: Sample fonts or custom (decided later if possible)
 MAIN GAMEPLAY:
   - Sisyphus move around, jump around the boulders (with A, D and space).
-  - Can push nearby boulders by pressing S why moving.
-  - Throw falling boulders resting on top by press W (cannot move why the boulder is on top of you) before timer run out and the boulder crush you.
+  - Can push nearby boulders by pressing S when moving, inherit direction from keys.
+  - Punch boulders by press E (cannot move why the boulder is on top of you) with limited statmina bar.
+  - Being under the boulder cost stamina overtime and if run out will be crushed.
+  - Restore stamina when do nothing
   
   - All object will obey grid of the game. (Sis will move freely, maybe changed in the future)
-  - Boulder fall at steady pace, will rest on top of Sisyhus (PC) and be thrown if pressed, if collided with boulder with opposite vector will break, else will fall down (if bottom is empty, fall down, else fall to left or right side if either are empty)
-  - Bombs fall the same but eplode either 2x2 tiles when touch down floor or 4x4 tiles if colllide mid air and os un catchable.
-  - Lightnigg will just delete one column, cannnot be catched and do not fall. There is a outline of where it strikes.
+  - Boulder fall at steady pace, will rest on top of Sisyhus (PC) and be punched, if collided with boulder with opposite vector will break (2 cases: when be punched horizontal and collide mid air)
+  - Bombs fall the same but eplode either 2x2 tiles when touch down floor or 4x4 tiles if colllide mid air or punched.
+  - Lightning will just delete one column, cannnot be catched and do not fall. There is a outline of where it strikes.
 
   - The level of gradually changed background as you go up as one row finish develop then the screen go up, to eventually reach the top of the cave and you win, with highscore dictate how much boulder destroyed h and what level you reaches (each level give multipictive value to the boulder,lvl 1 give boulder 10, then lvl 2 give 1.25 thus 12, then lvl 3 give 15 then more)
   - PC only have 1 life and died if crushed
