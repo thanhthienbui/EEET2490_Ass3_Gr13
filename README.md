@@ -9,14 +9,13 @@ SCRREN: (WXH) 8x16 tiles screen game + 1 tile padding an 4 sides - 1 tile is a 8
 INTRO: Custom video frames for introduction, background, final cutscenes and death screens. (addition, if possible)
 FONTS: Sample fonts or custom (decided later if possible)
 MAIN GAMEPLAY:
-  - Sisyphus move around, jump around the boulders (with A, D and space).
-  - Can push nearby boulders by pressing S when moving, inherit direction from keys.
-  - Punch boulders by press E (cannot move why the boulder is on top of you) with limited statmina bar.
-  - Being under the boulder cost stamina overtime and if run out will be crushed.
-  - Restore stamina when do nothing
+  - Sisyphus move around, jump around and crouching around the boulders (with W,A,S,D).
+  - Throw boulders upward by press E while moving and touching boulder including crouching, no jump or up. ALl boulder will dissapear at that location and move into top of player then move up (might get 2 tiles to dissapear).
+  - Can cling on side surface and restore jump.
+  - Being under the boulder will crush he player.
   
   - All object will obey grid of the game. (Sis will move freely, maybe changed in the future)
-  - Boulder fall at steady pace, will rest on top of Sisyhus (PC) and be punched, if collided with boulder with opposite vector will break (2 cases: when be punched horizontal and collide mid air)
+  - Boulder fall at steady pace, will rest on top of Sisyhus (PC) and be punched, if collided with boulder with opposite vector will break (2 cases: when be punched horizontal and collide mid air). Thrown boulder will rise at that pace, pauses then fall.
   - Bombs fall the same but eplode either 2x2 tiles when touch down floor or 4x4 tiles if colllide mid air or punched.
   - Lightning will just delete one column, cannnot be catched and do not fall. There is a outline of where it strikes.
 
