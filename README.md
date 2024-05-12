@@ -4,7 +4,7 @@ Topic: Scaffold & Hammer: A platforming game with a character destroying falling
 Task 1 and 2 deadline: 10/5/2024
 
 Additionmal INformation for TASK 3: 
-NAME: Miner's Trial - impress Hades and earn Sisyphus freedom
+NAME: Blood Diamond - Mine valuables to stay alive as long as possible or until imter run out, stage are procedually generated and have increased toughness
 SCRREN: (WXH) 8x16 tiles screen game + 1 tile padding an 4 sides - 1 tile is a 8x8 pixels patterns for paddings, boulders, bombs, lightning strike, PC (SISYPHUS), power ups -> final size: 18*8 x 10*8 = 144 x 80 pixels -> 11520 bytes
 INTRO: Custom video frames for introduction, background, final cutscenes and death screens. (addition, if possible)
 FONTS: Sample fonts or custom (decided later if possible)
