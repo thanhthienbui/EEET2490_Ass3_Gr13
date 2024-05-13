@@ -38,7 +38,7 @@ void drawString(int x, int y, char *str, unsigned int attr, int zoom)
 
 #if 1 //UART0
 unsigned int uart_isReadByteReady(){
-	return ( !(UART0_FR & UART0_FR_RXFE) );
+	return ( (UART0_FR & UART0_FR_RXFE) );
 }
 
 #else //UART1
@@ -67,7 +67,7 @@ void wait_msec(unsigned int n)
     asm volatile ("mrs %0, cntpct_el0" : "=r"(t));
     
     // Calculate expire value for counter
-    expiredTime = t + f * n/1000;
+    expiredTime = t + f*n /1000;
     do {
     	asm volatile ("mrs %0, cntpct_el0" : "=r"(r));
     } while(r < expiredTime);
