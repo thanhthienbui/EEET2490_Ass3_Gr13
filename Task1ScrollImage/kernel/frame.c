@@ -133,3 +133,18 @@ void drawImageARGB32(int cur_x, int cur_y, int i_width, int i_height,int f_width
         }
     }
 }
+
+void display_frame_image(unsigned int frame_image[], int x, int y, int width,
+    int height) {
+    int num = 0;
+
+    while (y < height) {
+        for (x = 0; x < width; x++) {
+            int offs = (y * pitch) + (x * 4);
+            *((unsigned int*)(fb + offs)) = frame_image[num];
+            num++;
+        }
+        y++;
+        x = 0;
+    }
+}
