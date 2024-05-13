@@ -2,7 +2,7 @@
 #define TIMER_H
 #define TIMER_BASE (MMIO_BASE + 0x7E003000)
 #include "common.h"
-#define ClockHz 1000000
+#define CLOCKHZ 4000000
 // registers
 #define TIMER_STATUS   (*(volatile unsigned int *)(TIMER_BASE + 0x0))
 #define TIMER_LOW       (*(volatile unsigned int *)(TIMER_BASE + 0x4))
