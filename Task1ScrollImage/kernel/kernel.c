@@ -32,10 +32,10 @@ void main() {
 		}
 		else if(c == 'w'){
 			if(yi <= 0 ){
-				yi = 10;
+				yi = 0;
 			}
             else{
-				yi -= 2;
+				yi -= 10;
 			}
 		}
 
@@ -45,7 +45,6 @@ void main() {
 			uart_dec(yi);
 			uart_sendc('\n');
 
-			drawRectARGB32(0,0, 512, 384, 0x00000000, 1); // erase entire frame
 			//draw image at a section given y coordinate and image size and frame size
 			drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);
 			wait_msec(500);

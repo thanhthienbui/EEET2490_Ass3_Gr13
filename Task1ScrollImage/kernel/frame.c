@@ -127,6 +127,9 @@ void drawImageARGB32(int cur_x, int cur_y, int i_width, int i_height,int f_width
     int xlim = i_width < f_width? i_width : f_width; // check which ever size is smaller, image or frame and take the smaller one
     int ylim = i_height < f_height? i_height : f_height;
     int index = (cur_y * i_width) + cur_x;// for the image, does not concern the limit of frame
+    
+    drawRectARGB32(0,0, xlim, ylim, 0x00000000, 1); // erase entire frame
+
     for(int y = 0; y < xlim; y++ ){ // iterate through width and height of image to draw
         for(int x = 0;  x < ylim; x++){
             drawPixelARGB32(x, y,image_bit[index + y*i_width + x]);
@@ -134,17 +137,6 @@ void drawImageARGB32(int cur_x, int cur_y, int i_width, int i_height,int f_width
     }
 }
 
-void display_frame_image(unsigned int frame_image[], int x, int y, int width,
-    int height) {
-    int num = 0;
-
-    while (y < height) {
-        for (x = 0; x < width; x++) {
-            int offs = (y * pitch) + (x * 4);
-            *((unsigned int*)(fb + offs)) = frame_image[num];
-            num++;
-        }
-        y++;
-        x = 0;
-    }
+void playVideoARGB32(int cur_x, int cur_y, int i_width, int i_height,int f_width, int f_height, const unsigned long** vid_frame){
+    
 }
