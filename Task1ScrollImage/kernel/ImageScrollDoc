@@ -1,0 +1,6 @@
+Funcitonality require image.h for immage bit map, util.c for wait.msec and getUART, frame.c for drawPixel() and drawImage(), uart0/1.h fr uart put()
+Principle, output and image from top left to down right, if too big, display only bit in frame, change bit image whenever keys pressed
+Issues: Key pressed not reqired for changing image make redundant draw -> if clause that checks y before and after the key pressed guard the drawing.
+        Change too small to see with naked eyes -> make move much larger
+        the coordinate hit the limit of the drawing, creating artifacts -> hard coded limit when key pressed clauses
+Improvement: Add clearing image to background image (black) to the draw function
