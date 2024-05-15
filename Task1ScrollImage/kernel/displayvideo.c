@@ -16,7 +16,7 @@ void displayVideo(int x, int y) {
             // display each frame image
             display_frame_image(video[i], x, y, video_width,
                                 video_height + y);
-            video_wait_ms(100000);
+            wait_msec(100000);
         }
         character = uart_get_char();
     }
