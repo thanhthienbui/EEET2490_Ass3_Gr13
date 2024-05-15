@@ -52,7 +52,44 @@ void main() {
 		}
        
     } 
-} 
+}
+
+void video()
+{
+	uart_init();
+	framebf_init(VID_WIDTH, VID_HEIGH);
+
+	int frame = 0;
+	int cycle = 0;
+	while (1)
+	{
+		// Sketch each frame
+		for (int y = 0; y < VID_HEIGH; y++)
+		{ // height
+			for (int x = 0; x < VID_WIDTH; x++)
+			{ // width
+				drawPixelARGB32(x, y, video_frame[frame][y * VID_WIDTH + x]);
+			}
+		}
+
+		// Move to the next frame
+		frame++;
+
+		// Display again all the frames
+		if (frame == 1)
+		{
+			frame = 0;
+			cycle++;
+		}
+
+		// Display video 5 times
+		if (cycle == 3)
+		{
+			break;
+		}
+		wait_msec(100000);
+	}
+}
 
 /*
 void main(){// displaying character
