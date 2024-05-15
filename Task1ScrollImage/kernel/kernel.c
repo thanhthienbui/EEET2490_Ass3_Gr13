@@ -54,7 +54,7 @@ void main() {
     } 
 }
 
-void video()
+/*void video()
 {
 	uart_init();
 	framebf_init(VID_WIDTH, VID_HEIGH);
@@ -89,7 +89,7 @@ void video()
 		}
 		wait_msec(100000);
 	}
-}
+}*/
 
 /*
 void main(){// displaying character
