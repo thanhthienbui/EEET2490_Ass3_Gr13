@@ -1,13 +1,19 @@
-#include "./uart/uart0.h"
+#include "./uart/uart1.h"
 #include "./mbox/mbox.h"
 #include "./framebf/framebf.h"
+#include "./timer/timer.h"
+#include "./timer/interrupt.h"
+
 
 void main() {
     // set up serial console
-    uart0_init();
+    uart1_init();
     // say hello
-    uart0_puts("\n\nHello World!\n");
+    uart1_puts("\n\nTimer 1 received: .\n");
     framebf_init();
+    timer_init();
+    handle_timer_1();
     while (1) {
+
     }
 }
