@@ -4,6 +4,7 @@
 #include "frame.h" 
 #include "utils.h" 
 #include "image.h" 
+#include "video.h"
 // 'sample', 564x564px
 
 void main() { 
@@ -23,74 +24,50 @@ void main() {
         //read each char
 		c = getUart();// get uart C
 		if(c == 's'){
-			if(yi >= 180 ){ // limit of the picture
+			if(yi >= 180 ){ // enabling scrolling only when correct keys is inputted or when the top corrdinated has not reach the edge of the image --- s = sccroll down
 				yi = 180;
 			}
 			else{
-				yi += 10;
+				yi += 10;// change the coordinate, thus moving the image through the frame
 			}
 		}
-		else if(c == 'w'){
+		else if(c == 'w'){ // w == scroll up 
 			if(yi <= 0 ){
 				yi = 0;
 			}
-            else{
+           		else{
 				yi -= 10;
 			}
 		}
 
-		if(yf != yi){ // make sure either the input is valid or there is space in the image to move down
-			 //draw Image in new scan
-			uart_puts("y: "); // get Y coordinate of the image
-			uart_dec(yi);
-			uart_sendc('\n');
+		if(yf != yi){ // make sure either the input is valid to draw image, if nothing change then do not draw again
+			//output getUART results for trouble shooting
+			//uart_puts("y: "); // get Y coordinate of the image
+			//uart_dec(yi); 
+			//uart_sendc('\n');
 
 			//draw image at a section given y coordinate and image size and frame size
 			drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);
 			wait_msec(500);
-			yf = yi;
+			yf = yi; // get the previous coordinate
 		}
        
     } 
 }
+/*
+void main() { 
+    // set up serial console 
+    uart_init(); 
+    // say hello 
+    uart_puts("\n\nHello World!\n"); 
+    // Initialize frame buffer with set frame size 
+    framebf_init(1024, 768); 
 
-/*void video()
-{
-	uart_init();
-	framebf_init(VID_WIDTH, VID_HEIGH);
-
-	int frame = 0;
-	int cycle = 0;
-	while (1)
-	{
-		// Sketch each frame
-		for (int y = 0; y < VID_HEIGH; y++)
-		{ // height
-			for (int x = 0; x < VID_WIDTH; x++)
-			{ // width
-				drawPixelARGB32(x, y, video_frame[frame][y * VID_WIDTH + x]);
-			}
-		}
-
-		// Move to the next frame
-		frame++;
-
-		// Display again all the frames
-		if (frame == 1)
-		{
-			frame = 0;
-			cycle++;
-		}
-
-		// Display video 5 times
-		if (cycle == 3)
-		{
-			break;
-		}
-		wait_msec(100000);
-	}
-}*/
-
+    while(1){ play video
+        playVideoARGB32(10, 10, 10, 338, 600, 1024, 768, video_frame)
+    } 
+}
+*/
 /*
 void main(){// displaying character
 	char c = ' ';

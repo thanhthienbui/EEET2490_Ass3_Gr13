@@ -138,15 +138,9 @@ void drawImageARGB32(int cur_x, int cur_y, int i_width, int i_height,int f_width
 }
 
 void playVideoARGB32(int numframe, int cur_x, int cur_y, int video_width, int video_height,int frame_width, int frame_height, const unsigned long** vid_frame){
-    framebf_init(i_width, i_height)
-
     for (index = 0, index < numframe, index++) {
         drawImageARGB32(cur_x, cur_y, frame_width, frame_height, video_width, video_height, vid_frame[index]);
-
-        wait_msec(100000);
-     }
+        wait_msec(1000);
+    }
+    wait_msec(1000);
 }
-
-/*void displayVideo(int x, int y) {
-
-}*/
