@@ -2,23 +2,19 @@
 #include "../uart/uart0.h"
 void enable_irq(){  //enable for timer 1
     // arm cpu
-    // gpu
-
+    uart0_puts("Enabling interrupt\n");
+    ENABLE_IRQS_1 = (1 << SYS_TIMER_MATCH_1_INT);
+    ENABLE_BASIC_IRQS = (1 << 0);
+    while (!(FIQ_CONTROL & (1<<7))){
+        asm volatile("nop");
+    }
     
-    
-    // uart0_puts("Enabling interrupt\n");
-    // ENABLE_IRQS_1 = (1 << SYS_TIMER_MATCH_1_INT);
-    // uart0_puts("got here\n");
+    uart0_puts("basic enable\n");
+    FIQ_CONTROL = 0b1000000<<0;
+    uart0_puts("FIQ source\n");
 
-    // while(!(FIQ_CONTROL & (1<<7))) {    // do nothing if bit not set
-    //     uart0_puts("waiting\n");
-    //     asm volatile("nop");
-    // };
-    // FIQ_CONTROL = 0b1000000<<0;
-
-    // uart0_puts("here\n");
-    // // ENABLE_BASIC_IRQS = (1 << 0);
-    // uart0_puts("PI3\n");
+    ENABLE_IRQS_1 = (1 << SYS_TIMER_MATCH_1_INT);
+    uart0_puts("enable 1\n");
 }
 
 void disable_irq() {

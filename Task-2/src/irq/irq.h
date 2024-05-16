@@ -5,21 +5,17 @@
 #define IRQ_BASE (MMIO_BASE + (unsigned int)0x7E00B000)
 
 // registers
-#define IRQ_BASIC_PENDING   (*(volatile unsigned int *)(IRQ_BASE + 0x200))
+#define IRQ_BASIC_PENDING   (*(volatile unsigned int *)(IRQ_BASE + 0x200))  // R
+#define IRQ_PENDING_1       (*(volatile unsigned int *)(IRQ_BASE + 0x204))  // R
+#define IRQ_PENDING_2       (*(volatile unsigned int *)(IRQ_BASE + 0x208))  // R
 
-// 31:0 IRQ pending source  from GPU side
-#define IRQ_PENDING_1       (*(volatile unsigned int *)(IRQ_BASE + 0x204))
-// 63:32 IRQ pending source from GPU side
-#define IRQ_PENDING_2       (*(volatile unsigned int *)(IRQ_BASE + 0x208))
+#define FIQ_CONTROL         (*(volatile unsigned int *)(IRQ_BASE + 0x20C))  // R/W 6:0
 
-#define FIQ_CONTROL         (*(volatile unsigned int *)(IRQ_BASE + 0x20C))
 // IRQ enable 1
 #define ENABLE_IRQS_1       (*(volatile unsigned int *)(IRQ_BASE + 0x210))  //enable interrupt 31:0
-// IRQ enable 2
 #define ENABLE_IRQS_2       (*(volatile unsigned int *)(IRQ_BASE + 0x214))  //enable interrupt 63:32
-// IRQ enable 3
 #define ENABLE_BASIC_IRQS   (*(volatile unsigned int *)(IRQ_BASE + 0x218))
-
+ 
 #define DISABLE_IRQS_1      (*(volatile unsigned int *)(IRQ_BASE + 0x21C))
 #define DISABLE_IRQS_2      (*(volatile unsigned int *)(IRQ_BASE + 0x220))
 #define DISABLE_BASIC_IRQS  (*(volatile unsigned int *)(IRQ_BASE + 0x224))

@@ -1,5 +1,3 @@
-#include "common.h"
-
 //6.2.4
 enum vc_irqs {
     SYS_TIMER_IRQ_0 = 1,
