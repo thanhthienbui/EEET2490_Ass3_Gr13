@@ -146,7 +146,3 @@ void playVideoARGB32(int numframe, int cur_x, int cur_y, int video_width, int vi
         wait_msec(100000);
      }
 }
-
-/*void displayVideo(int x, int y) {
-
-}*/
