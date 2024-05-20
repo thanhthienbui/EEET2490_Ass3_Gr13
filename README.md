@@ -15,3 +15,5 @@ MAIN GAMEPLAY:
   
   - Advance to next level by breaking all gold or valuable with highscore dictate how much valuable gotten.
   - We aim for 3 stage so far so 3 backgrounds first, work on mechanics and player, boulder and padding sprites. (FOCUS ON SYSTEM DESIGN AND IMPLEMENT, CONTROLS, SPRITES & BACKGROUND AND HIGHSCORE)
+
+https://github.com/babbleberry/rpi4-osdev/tree/master/part6-breakout check this link for  moving and collusion
