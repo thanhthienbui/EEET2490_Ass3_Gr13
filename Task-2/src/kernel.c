@@ -1,4 +1,4 @@
-#include "./uart/uart0.h"
+#include "./uart/uart1.h"
 #include "./irq/irq.h"
 #include "./timer/timer.h"
 // #include "./mbox/mbox.h"
@@ -9,13 +9,15 @@
 
 void main() {
     // set up serial console
-    uart0_init();
-    uart0_puts("\nProgram begin\n");
-    
-    timer_1_init(4000000);
-    handle_timer_1();
+    uart1_init();
 
-    // enable_irq();
+    uart1_puts("\nProgram Begin\n");
+    
+    timer_1_init(100000);//count value
+    enable_irq();
+    // handle_timer_1();
+
+    
     // handle_irq();
     // say hello
     // uart0_puts("\n\nTimer 1 received: .\n");
@@ -23,8 +25,10 @@ void main() {
     // timer_init();
     // handle_timer_1();
     while (1) {
-        char c = uart0_getc();
-        uart0_sendc(c);
-        // handle_timer_1();
+        // uart1_puts("\nGot into While loop\n");
+        // char c = uart1_getc();
+        // uart1_sendc(c);
+        handle_timer_1();
+        handle_irq();
     }
 }

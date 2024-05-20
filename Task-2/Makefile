@@ -1,7 +1,7 @@
 CFILES := $(wildcard ./src/*.c)
 OFILES = $(CFILES: ./src/%.c = ./obj/%.o)
 # OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart0.o ./obj/uart1.o ./obj/mbox.o ./obj/framebf.o ./obj/irq.o
-OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart0.o ./obj/mbox.o ./obj/irq.o ./obj/timer.o
+OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart1.o ./obj/mbox.o ./obj/irq.o ./obj/timer.o
 
 GCCFLAGS := -Wall -O2 -ffreestanding -nostdlib -nostdinc
 
@@ -50,4 +50,5 @@ clean:
 	del .\obj\*.o .\obj\*.img .\obj\kernel8.elf .\obj\kernel8.img
 	
 run:
-	qemu-system-aarch64 -M raspi3 -kernel ./obj/kernel8.img -serial stdio -serial null
+# qemu-system-aarch64 -M raspi3 -kernel ./obj/kernel8.img -serial stdio -serial null
+	qemu-system-aarch64 -M raspi3 -kernel ./obj/kernel8.img -serial null -serial stdio
