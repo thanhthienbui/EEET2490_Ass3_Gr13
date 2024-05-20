@@ -4,16 +4,14 @@ Topic: Scaffold & Hammer: A platforming game with a character destroying falling
 Task 1 and 2 deadline: 10/5/2024
 
 Additionmal INformation for TASK 3: 
-NAME: Blood Diamond - Mine valuables to stay alive as long as possible or until imter run out, stage are procedually generated and have increased toughness
-SCRREN: (WXH) 8x16 tiles screen game + 1 tile padding an 4 sides - 1 tile is a 8x8 pixels patterns for paddings, boulders, bombs, lightning strike, PC (SISYPHUS), power ups -> final size: 18*8 x 10*8 = 144 x 80 pixels -> 11520 bytes
-INTRO: Custom video frames for introduction, background, final cutscenes and death screens. (addition, if possible)
-FONTS: Sample fonts or custom (decided later if possible)
+NAME:Blind -> simple maze game with 3 premade levels with timer to reach to exit and win the game, touch the walls or timer run out -> return to level starts. Beat 3 levels greated with game win screen
+SCRREN: 1024 x 768 screen res, 16x12 tile
+INTRO: Custom yellow characters + blue goal post, black walls and while starting place
+FONTS: Sample fonts to display the welcome and end game screen and level words
 MAIN GAMEPLAY:
-  - Miner move around left, right up and down (with W,A,S,D). After a certain time without getting gold he will die. Miner can only see 4x4 tiles.
-  - Boulder apear at level start, will break if miner touch it, miner wont move after break, Gold and gems will apear like rock but with sparkle, getting gold will refresh live meter a certain amount.
-  - Bombs appear the same but explode either 2x2 tiles after a while or strike, will die.
-  
-  - Advance to next level by breaking all gold or valuable with highscore dictate how much valuable gotten.
-  - We aim for 3 stage so far so 3 backgrounds first, work on mechanics and player, boulder and padding sprites. (FOCUS ON SYSTEM DESIGN AND IMPLEMENT, CONTROLS, SPRITES & BACKGROUND AND HIGHSCORE)
+  - PC move around left, right up and down (with W,A,S,D). After a certain time without getting gold he return to white spot
+  - Wall is black as background color, touch it the PC will return to white spot and timer resets.
+  - Advance to next level by get to blue goal post.
+  - We aim for 3 stage so far so 3 levels, work on levels, players and collision (FOCUS ON SYSTEM DESIGN AND IMPLEMENT, CONTROLS)
 
 https://github.com/babbleberry/rpi4-osdev/tree/master/part6-breakout check this link for  moving and collusion
