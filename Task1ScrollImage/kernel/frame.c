@@ -137,10 +137,24 @@ void drawImageARGB32(int cur_x, int cur_y, int i_width, int i_height,int f_width
     }
 }
 
-void playVideoARGB32(int numframe, int cur_x, int cur_y, int video_width, int video_height,int frame_width, int frame_height, const unsigned long** vid_frame){
+void display_frame_image(unsigned int frame_image[], int x, int y, int width, int height) {
+    int num = 0;
+
+    while (y < height) {
+        for (x = 0; x < width; x++) {
+            int offs = (y * pitch) + (x * 4);
+            *((unsigned int*)(fb + offs)) = frame_image[num];
+            num++;
+        }
+        y++;
+        x = 0;
+    }
+}
+
+/*void playVideoARGB32(int numframe, int cur_x, int cur_y, int video_width, int video_height, int frame_width, int frame_height, const unsigned long** vid_frame) {
     for (index = 0, index < numframe, index++) {
         drawImageARGB32(cur_x, cur_y, frame_width, frame_height, video_width, video_height, vid_frame[index]);
         wait_msec(1000);
     }
     wait_msec(1000);
-}
+}*/

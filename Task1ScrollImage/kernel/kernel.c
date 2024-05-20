@@ -6,8 +6,8 @@
 #include "image.h" 
 #include "video.h"
 // 'sample', 564x564px
-
-void main() { 
+void playVideo(int x, int y);
+/*void main() {
     int yi = 0; // initial y coordinate
 	int yf = 0; // final y coordinate after getting input and move it
 	
@@ -53,7 +53,7 @@ void main() {
 		}
        
     } 
-}
+}*/
 /*
 void main() { 
     // set up serial console 
@@ -68,6 +68,37 @@ void main() {
     } 
 }
 */
+void main() {
+    uart_init();
+    uart_puts("\n\nHello World!\n");
+    framebf_init(1024, 768);
+    while (1) {
+        playVideo(1024, 768);
+
+    }
+}
+
+void playVideo(int x, int y) {
+    // Add message to prompt the user how to use
+    uart_puts("Video is playing ...\n");
+    //uart_puts("Press s to stop ");
+    //char character = uart_get_char();
+    // Keep displaying the video until the user press s
+    while (1) {
+        // // loop through all the frame image video
+        for (int i = 0; i < 15; i++) {
+            // display each frame image
+            display_frame_image(video_frame[i], x, y, 320,
+                240 + y);
+            wait_msec(100000);
+        }
+        //character = uart_get_char();
+    }
+
+    // Add message to announce the user
+    uart_puts("\nStopping video ...");
+}
+
 /*
 void main(){// displaying character
 	char c = ' ';
