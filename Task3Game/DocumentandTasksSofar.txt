@@ -1,0 +1,6 @@
+- Make welcome screen and Win screen
+- Display player object , spawn point and goal post according to map
+- movement checking
+- checking if touch wall -> respawn in point
+- timer for advanced timer
+- lighting and lamp
