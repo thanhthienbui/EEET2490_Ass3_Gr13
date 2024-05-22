@@ -54,6 +54,7 @@ extern volatile unsigned int mBuf_2[36];
 #define MBOX_TAG_BOARD_SERIAL 0x00010004
 #define MBOX_TAG_ARM_MEMORY 0x00010005
 #define MBOX_TAG_GETCLKRATE 0x00030002
+
 // Clock IDs
 #define CLK_ID_UART 0x000000002
 #define CLK_ID_ARM 0x000000003

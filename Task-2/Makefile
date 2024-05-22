@@ -1,8 +1,7 @@
 CFILES := $(wildcard ./src/*.c)
 OFILES = $(CFILES: ./src/%.c = ./obj/%.o)
 # OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart0.o ./obj/uart1.o ./obj/mbox.o ./obj/framebf.o ./obj/irq.o
-OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart1.o ./obj/mbox.o ./obj/irq.o ./obj/timer.o
-
+OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart1.o ./obj/mbox.o ./obj/irq.o ./obj/sys_timer.o 
 GCCFLAGS := -Wall -O2 -ffreestanding -nostdlib -nostdinc
 
 all: clean $(OBJFILES) ./obj/kernel8.img 
@@ -25,8 +24,8 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/irq/irq.c -o ./obj/irq.o 
 
 #timer
-./obj/timer.o: ./src/timer/timer.c
-	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/timer/timer.c -o ./obj/timer.o
+./obj/sys_timer.o: ./src/Sys_timer/sys_timer.c
+	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/Sys_timer/sys_timer.c -o ./obj/sys_timer.o
 # mbox
 ./obj/mbox.o: ./src/mbox/mbox.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/mbox/mbox.c -o ./obj/mbox.o 
@@ -34,6 +33,9 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 # frame buffer
 ./obj/framebf.o: ./src/framebf/framebf.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/framebf/framebf.c -o ./obj/framebf.o 
+# # ARM timer
+# ./obj/arm_timer.o: ./src/ARM_timer/arm_timer.c
+# 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/ARM_timer/arm_timer.c -o ./obj/arm_timer.o 
 
 # kernel
 ./obj/kernel.o: ./src/kernel.c
