@@ -1,6 +1,5 @@
-- Make welcome screen and Win screen
-- Display player object , spawn point and goal post according to map
-- movement checking
-- checking if touch wall -> respawn in point
+- Make welcome screen and Win screen --- welcome screen done, the win screen is just the same principal with final played time, the lower the better
+- Display player object , spawn point and goal post according to map --- use an 2d array to create map, check current player position by /tiles, if land in walls, die, to spaawn
+- movement checking --- done, need to apply boundary at edge screen
 - timer for advanced timer
 - lighting and lamp
