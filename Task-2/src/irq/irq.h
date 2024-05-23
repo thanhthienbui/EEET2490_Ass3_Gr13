@@ -2,15 +2,15 @@
 #define IRQ_H
 #include "../gpio.h"
 
-#define IRQ_BASE (MMIO_BASE + (unsigned int) 0x7E00B000)
+#ifdef RPI3 
+#define IRQ_BASE (MMIO_BASE + 0x7E00B000)
 
 // registers
 #define IRQ_BASIC_PENDING   (*(volatile unsigned int *)(IRQ_BASE + 0x200))  // R
 #define IRQ_PENDING_1       (*(volatile unsigned int *)(IRQ_BASE + 0x204))  // R
 #define IRQ_PENDING_2       (*(volatile unsigned int *)(IRQ_BASE + 0x208))  // R
-
+// FIQ control
 #define FIQ_CONTROL         (*(volatile unsigned int *)(IRQ_BASE + 0x20C))  // R/W 6:0
-
 // IRQ enable
 #define ENABLE_IRQS_1       (*(volatile unsigned int *)(IRQ_BASE + 0x210))  //enable interrupt 31:0
 #define ENABLE_IRQS_2       (*(volatile unsigned int *)(IRQ_BASE + 0x214))  //enable interrupt 63:32
@@ -33,7 +33,7 @@
 #define FIQ_ILLEGAL_ACCESS_TYPE_0 71
 
 // ARM peripherals interrupt
-// Timer interrupts
+// System Timer Interrupts
 #define SYS_TIMER_MATCH_1_INT 1
 #define SYS_TIMER_MATCH_3_INT 3
 
@@ -56,8 +56,18 @@
 #define PCM_INT 55
 #define UART_INT 57
 
-// configure for interrupt of timer 1
-void enable_irq();
-void disable_irq();
-void handle_irq();  
+#endif
+
+/*
+void irq_init_vectors();
+void irq_enable();
+void irq_disable();
+
+void show_invalid_entry_message(uint32_t type, uint64_t esr, uint64_t address);
+void enable_interrupt_controller();
+void handle_irq();
+*/
+
+void enable_irq();  //enable for timer 1
+
 #endif // IRQ_H

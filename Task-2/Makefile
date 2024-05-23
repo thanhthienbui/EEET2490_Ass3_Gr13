@@ -1,7 +1,7 @@
 CFILES := $(wildcard ./src/*.c)
 OFILES = $(CFILES: ./src/%.c = ./obj/%.o)
 # OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart0.o ./obj/uart1.o ./obj/mbox.o ./obj/framebf.o ./obj/irq.o
-OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/uart1.o ./obj/mbox.o ./obj/irq.o ./obj/sys_timer.o 
+OBJFILES = ./obj/boot.o ./obj/kernel.o ./obj/mini_uart1.o ./obj/mbox.o ./obj/sys_timer.o ./obj/irq.o 
 GCCFLAGS := -Wall -O2 -ffreestanding -nostdlib -nostdinc
 
 all: clean $(OBJFILES) ./obj/kernel8.img 
@@ -9,16 +9,23 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 # boot
 ./obj/boot.o: ./src/boot.S
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/boot.S -o ./obj/boot.o 
+# ./obj/irq.o:
+# 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/irq.S -o ./obj/irq.o
+# ./obj/entry.o:
+# 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/entry.S -o ./obj/entry.o
+
+
 ./obj/%.o: ./src/%.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c $< -o $@
 
-# uart0 
+# mini_uart0 
 ./obj/uart0.o: ./src/uart/uart0.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/uart/uart0.c -o ./obj/uart0.o 
 
 # uart1
-./obj/uart1.o: ./src/uart/uart1.c
-	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/uart/uart1.c -o ./obj/uart1.o 
+./obj/mini_uart1.o: ./src/uart/mini_uart1.c
+	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/uart/mini_uart1.c -o ./obj/mini_uart1.o 
+
 # irq
 ./obj/irq.o: ./src/irq/irq.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/irq/irq.c -o ./obj/irq.o 

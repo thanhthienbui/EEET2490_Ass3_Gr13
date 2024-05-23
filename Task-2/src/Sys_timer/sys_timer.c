@@ -1,5 +1,5 @@
 #include "sys_timer.h"
-#include "../uart/uart1.h"
+#include "../uart/mini_uart1.h"
 #include "../gpio.h"
 // const uint32_t interval_1 = ClockHz;
 // uint32_t count_val;
