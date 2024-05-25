@@ -9,11 +9,6 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 # boot
 ./obj/boot.o: ./src/boot.S
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/boot.S -o ./obj/boot.o 
-# ./obj/irq.o:
-# 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/irq.S -o ./obj/irq.o
-# ./obj/entry.o:
-# 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/entry.S -o ./obj/entry.o
-
 
 ./obj/%.o: ./src/%.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c $< -o $@

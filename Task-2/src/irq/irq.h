@@ -3,7 +3,7 @@
 #include "../gpio.h"
 
 // #define IRQ_BASE (MMIO_BASE + 0x7E00B000)
-#define IRQ_BASE 0x7E00B000
+#define IRQ_BASE 0x3F00B000
 // registers
 
 #define IRQ_BASIC_PENDING (* (volatile unsigned int*)(IRQ_BASE+0x200))  // R
