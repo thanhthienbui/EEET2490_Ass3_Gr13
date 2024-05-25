@@ -1,5 +1,7 @@
 - Make welcome screen and Win screen --- welcome screen done, the win screen is just the same principal with final played time, the lower the better
-- Display player object , spawn point and goal post according to map --- use an 2d array to create map, check current player position by /tiles, if land in walls, die, to spaawn
-- movement checking --- done, need to apply boundary at edge screen
+- Grid Map is 640/16 x 480/16 (wxh), 3, 4 or 5 level with each are more difficult than other, 1st have no walls, 2nd have some wall in between, 3 have walls section and bends, 4 have a true maze. Each maze must be customed as 2D arrays with each value is either 0(none), 1(spawn), 2 (walls), 3 (goal post, get and finish level) and 4 (walls but highlighted). Spawn and Goal post must be highlighted and static throughout all levels but walls changed. The highlighted walls are wipted out and renewed thorugh levels (reds into blacks again).
+- Display spawn point and goal post according to map and drawn player character in top. Update the scannned walls into highlighted walls by replaceing value at that wall tile 2 to 4 and draw any tiles with highlighted tiles. Check logic player location in grid first to either keep current location or back to spawn when died then draw player on top of background maze. 
+- 2 ways to highlighed walls, one is to scan at a distance of 4 tiles, if there is any in the distance, highlighted it by changing value from 2 to 4. And one is when hit by walls, check player location, if it is walls ==2, move player to spawn point by chanigng x1, y1 and x2, y2 and change that grid value at that location from 2 to 4, make it highlighted. 
+- movement checking --- done, edge detection done too, move at 16x16 tiles. 
 - timer for advanced timer
 - lighting and lamp
