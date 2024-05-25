@@ -23,3 +23,5 @@ void uart1_puts(char *s);
 
 void uart1_hex(unsigned int d);
 void uart1_dec(int num);
+void uart1_bi(unsigned int num);
+void get_add();

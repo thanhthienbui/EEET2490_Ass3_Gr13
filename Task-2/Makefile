@@ -33,6 +33,7 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 #timer
 ./obj/sys_timer.o: ./src/Sys_timer/sys_timer.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/Sys_timer/sys_timer.c -o ./obj/sys_timer.o
+
 # mbox
 ./obj/mbox.o: ./src/mbox/mbox.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/mbox/mbox.c -o ./obj/mbox.o 
@@ -40,24 +41,16 @@ all: clean $(OBJFILES) ./obj/kernel8.img
 # frame buffer
 ./obj/framebf.o: ./src/framebf/framebf.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/framebf/framebf.c -o ./obj/framebf.o 
-# # ARM timer
-# ./obj/arm_timer.o: ./src/ARM_timer/arm_timer.c
-# 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/ARM_timer/arm_timer.c -o ./obj/arm_timer.o 
 
 # kernel
 ./obj/kernel.o: ./src/kernel.c
 	aarch64-none-elf-gcc $(GCCFLAGS) -c ./src/kernel.c -o ./obj/kernel.o 
 
-./obj/kernel8.img: ./obj/boot.o $(OFILES)
-# aarch64-none-elf -nostdlib $(OFILES) -T ./src/link.ld -o ./obj/kernel8.elf
-# aarch64-none-elf-ld -nostdlib $(OBJFILES) -T ./src/link.ld -o ./obj/kernel8.elf
-	
+./obj/kernel8.img: ./obj/boot.o $(OFILES)	
 	aarch64-none-elf-ld -nostdlib $(OBJFILES) -T ./src/link.ld -o ./obj/kernel8.elf
 	aarch64-none-elf-objcopy -O binary ./obj/kernel8.elf ./obj/kernel8.img
-
 clean:
 	del .\obj\*.o .\obj\*.img .\obj\kernel8.elf .\obj\kernel8.img
-	
 run:
 # qemu-system-aarch64 -M raspi3 -kernel ./obj/kernel8.img -serial stdio -serial null
 	qemu-system-aarch64 -M raspi3 -kernel ./obj/kernel8.img -serial null -serial stdio

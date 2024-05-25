@@ -106,3 +106,27 @@ void uart1_dec(int num) {
 	str[len] = '\0';
 	uart1_puts(str);
 }
+
+void uart1_bi(unsigned int num) {
+    int count = 0;
+    uart1_puts("0b ");
+    for (int pos = 31; pos >= 0; pos--) {
+        // Get highest 4-bit nibble
+        char digit = (num >> pos) & 0x1;
+        /* Convert to ASCII code */
+        // 0-1 => '0'-'1'
+        digit += '0';
+        uart1_sendc(digit);
+        count++;
+        if (count >= 4) {
+            uart1_sendc(' ');
+            count = 0;
+        }
+    }
+}
+void get_add() {
+    uart1_puts("\nAddress AUX_MU_IO: ");
+    uart1_hex((unsigned int)(AUX_MU_IO));
+    uart1_puts("\n");
+    // uart1_hex((unsigned int)&ENABLE_IRQS_1);
+}

@@ -2,23 +2,23 @@
 #define IRQ_H
 #include "../gpio.h"
 
-#ifdef RPI3 
-#define IRQ_BASE (MMIO_BASE + 0x7E00B000)
-
+// #define IRQ_BASE (MMIO_BASE + 0x7E00B000)
+#define IRQ_BASE 0x7E00B000
 // registers
-#define IRQ_BASIC_PENDING   (*(volatile unsigned int *)(IRQ_BASE + 0x200))  // R
-#define IRQ_PENDING_1       (*(volatile unsigned int *)(IRQ_BASE + 0x204))  // R
-#define IRQ_PENDING_2       (*(volatile unsigned int *)(IRQ_BASE + 0x208))  // R
+
+#define IRQ_BASIC_PENDING (* (volatile unsigned int*)(IRQ_BASE+0x200))  // R
+#define IRQ_PENDING_1 (* (volatile unsigned int*)(IRQ_BASE+0x204))  // R
+#define IRQ_PENDING_2 (* (volatile unsigned int*)(IRQ_BASE+0x208))  // R
 // FIQ control
-#define FIQ_CONTROL         (*(volatile unsigned int *)(IRQ_BASE + 0x20C))  // R/W 6:0
+#define FIQ_CONTROL (* (volatile unsigned int*)(IRQ_BASE+0x20C))  // R/W 6:0
 // IRQ enable
-#define ENABLE_IRQS_1       (*(volatile unsigned int *)(IRQ_BASE + 0x210))  //enable interrupt 31:0
-#define ENABLE_IRQS_2       (*(volatile unsigned int *)(IRQ_BASE + 0x214))  //enable interrupt 63:32
-#define ENABLE_BASIC_IRQS   (*(volatile unsigned int *)(IRQ_BASE + 0x218))
+#define ENABLE_IRQS_1 (* (volatile unsigned int*)(IRQ_BASE+0x210))  //enable interrupt 31:0
+#define ENABLE_IRQS_2 (* (volatile unsigned int*)(IRQ_BASE+0x214))  //enable interrupt 63:32
+#define ENABLE_BASIC_IRQS (* (volatile unsigned int*)(IRQ_BASE+0x218))
 //  IRQ disable 
-#define DISABLE_IRQS_1      (*(volatile unsigned int *)(IRQ_BASE + 0x21C))
-#define DISABLE_IRQS_2      (*(volatile unsigned int *)(IRQ_BASE + 0x220))
-#define DISABLE_BASIC_IRQS  (*(volatile unsigned int *)(IRQ_BASE + 0x224))
+#define DISABLE_IRQS_1 (* (volatile unsigned int*)(IRQ_BASE+0x21C))
+#define DISABLE_IRQS_2 (* (volatile unsigned int*)(IRQ_BASE+0x220))
+#define DISABLE_BASIC_IRQS (* (volatile unsigned int*)(IRQ_BASE+0x224))
 
 // FIQ source
 // 0-63: GPU interrupts
@@ -56,7 +56,6 @@
 #define PCM_INT 55
 #define UART_INT 57
 
-#endif
 
 /*
 void irq_init_vectors();
@@ -69,5 +68,8 @@ void handle_irq();
 */
 
 void enable_irq();  //enable for timer 1
-
+void disable_irq(); //disable for timer 1
+void handle_irq();
+uint64_t timer_get_tick();
+void timer_sleep(uint32_t ms);
 #endif // IRQ_H
