@@ -6,7 +6,8 @@ Task 1 and 2 deadline: 10/5/2024
 Additionmal INformation for TASK 3: 
 NAME:Blind -> simple maze game with 3 premade levels with timer to reach to exit and win the game, touch the walls or timer run out -> return to level starts. Beat 3 levels greated with game win screen
 SCRREN: 1024 x 768 screen res, 16x12 tile
-INTRO: Custom yellow characters + blue goal post, black walls and while starting place
+INTRO: white cute for character + yellow goal post, black walls and while starting place as blue cube
+
 FONTS: Sample fonts to display the welcome and end game screen and level words
 MAIN GAMEPLAY:
   - PC move around left, right up and down (with W,A,S,D). After a certain time without getting gold he return to white spot
