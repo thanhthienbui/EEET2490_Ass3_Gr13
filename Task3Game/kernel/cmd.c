@@ -151,7 +151,7 @@ void playVideo(int x, int y) {
     // Keep displaying the video until the user press s
     while (c != 's') {
         // // loop through all the frame image video
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 15; i++) {
             // display each frame image
             display_frame_image(video_frame[i], x, y, 320,
                 240 + y);
