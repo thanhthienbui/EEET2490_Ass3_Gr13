@@ -1,9 +1,10 @@
+//----------------------------------sys_timer.h----------------------------------//
 #ifndef SYS_TIMER_H
 #define SYS_TIMER_H
 #include "../gpio.h"
 #define CLK_HZ 1000000
 
-#define TIMER_BASE 0x3F003000
+#define TIMER_BASE (MMIO_BASE + 0x00003000) // 0x3F003000
 
 // registers
 #define TIMER_CONTROL_STATUS    (*(volatile unsigned int *)(TIMER_BASE + 0x0))  // R/W 3:0

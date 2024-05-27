@@ -6,7 +6,7 @@
 #define RPI3 //enable when using RPI3 (QEMU emulation/ real board)
 #ifdef RPI3 //RPI3
     #define MMIO_BASE (unsigned int)0x3F000000  //physical address
-#else //RPI4
+#else  //RPI4    
     #define MMIO_BASE 0xFE000000
 #endif
 //Define GPIO Registers based on their addresses
