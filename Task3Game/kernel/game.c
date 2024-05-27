@@ -5,6 +5,7 @@
 #include "../uart/uart0.h"
 #include "../uart/uart1.h"
 #include "frame.h"
+#include "cmd.h"
 
 
 
@@ -95,15 +96,19 @@ void playGame(){
         if (c == 's' && y1 < (YLIM - 1) * steps) {
             new_y1 += steps;
             new_y2 += steps;
+            logCommand(c);
         } else if (c == 'w' && y1 >= steps) {
             new_y1 -= steps;
             new_y2 -= steps;
+            logCommand(c);
         } else if (c == 'd' && x1 < (XLIM - 1) * steps) {
             new_x1 += steps;
             new_x2 += steps;
+            logCommand(c);
         } else if (c == 'a' && x1 >= steps) {
             new_x1 -= steps;
             new_x2 -= steps;
+            logCommand(c);
         } else if (c == 'q') {
             break;
         }
