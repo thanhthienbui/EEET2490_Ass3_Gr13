@@ -130,8 +130,8 @@ void drawImageARGB32(int cur_x, int cur_y, int i_width, int i_height,int f_width
     
     drawRectARGB32(0,0, xlim, ylim, 0x00000000, 1); // erase entire frame
 
-    for(int y = 0; y < xlim; y++ ){ // iterate through width and height of image to draw
-        for(int x = 0;  x < ylim; x++){
+    for(int y = 0; y < ylim; y++ ){ // iterate through width and height of image to draw
+        for(int x = 0;  x < xlim; x++){
             drawPixelARGB32(x, y,image_bit[index + y*i_width + x]);
         }
     }

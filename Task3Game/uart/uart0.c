@@ -117,6 +117,15 @@ char uart_getc() {
     return (c == '\r' ? '\n' : c);
 }
 
+char uart_get_char() {
+	char c = 0;
+	if (!(UART0_FR & UART0_FR_RXFE))
+		asm volatile("nop");
+
+	c = (unsigned char)(UART0_DR);
+	/* convert carriage return to newline */
+	return (c == '\r' ? '\n' : c);
+}
 
 /**
  * Display a string
