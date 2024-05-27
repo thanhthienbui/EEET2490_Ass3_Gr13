@@ -42,10 +42,6 @@ void logCommand(char command) {
     uart_puts(uart_config);
     uart_puts("\n");
 
-    // Display the confirmation message with the received command
-    uart_puts("Press '");
-    uart_sendc(command);
-    uart_puts("' again to confirm your command\n");
 }
 
 // Clear screen (monitor)
@@ -71,8 +67,6 @@ void execute() {
 
         char command = uart_getc();
         logCommand(command); // Log the command
-
-        command = uart_getc();
 
         uart_sendc(command);
         uart_sendc('\n');
