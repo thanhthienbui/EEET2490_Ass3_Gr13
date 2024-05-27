@@ -15,7 +15,8 @@
 #define TIMER_COMPARE_3         (*(volatile unsigned int *)(TIMER_BASE + 0x18)) // R/W
 
 // prototypes functions
-void timer_1_init();
+void timer_init();
 void handle_timer_1();
+void handle_timer_3();
 
 #endif 

@@ -4,8 +4,8 @@
 
 // #define IRQ_BASE (MMIO_BASE + 0x7E00B000)
 #define IRQ_BASE 0x3F00B000
-// registers
 
+// registers
 #define IRQ_BASIC_PENDING (* (volatile unsigned int*)(IRQ_BASE+0x200))  // R
 #define IRQ_PENDING_1 (* (volatile unsigned int*)(IRQ_BASE+0x204))  // R
 #define IRQ_PENDING_2 (* (volatile unsigned int*)(IRQ_BASE+0x208))  // R
@@ -55,17 +55,6 @@
 #define SPI_INT 54
 #define PCM_INT 55
 #define UART_INT 57
-
-
-/*
-void irq_init_vectors();
-void irq_enable();
-void irq_disable();
-
-void show_invalid_entry_message(uint32_t type, uint64_t esr, uint64_t address);
-void enable_interrupt_controller();
-void handle_irq();
-*/
 
 void enable_irq();  //enable for timer 1
 void disable_irq(); //disable for timer 1
