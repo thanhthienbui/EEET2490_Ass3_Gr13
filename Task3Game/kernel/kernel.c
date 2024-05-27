@@ -4,14 +4,14 @@
 #include "frame.h" 
 #include "utils.h" 
 #include "cmd.h"
-#define RED 0xFFFF0000 // COLOR IN HEXA
+/*#define RED 0xFFFF0000 // COLOR IN HEXA
 #define WHITE 0xFFFFFFFF
 #define BLUE 0xFF0000FF
 #define CYAN 0xFF00FFFF
 #define YELLOW 0xFFFFFF00
-#define BLACK 0xFF000000
-#define XLIM 3 // MAP LIMIT
-#define YLIM 3
+#define BLACK 0xFF000000*/
+//#define XLIM 3 // MAP LIMIT
+//#define YLIM 3
 //draw welcome screen --- done
 /*void drawWelcomeScreen(int screen_w, int screen_h){
 	drawString(32, 320, "AWSD to move left, right, up and down", BLUE, 2);
@@ -106,3 +106,14 @@ void main() {
 		execute();
 	}
 }
+
+/*void main() {
+	// set up serial console 
+	uart_init();
+	framebf_init(1024, 768);
+
+	while (1) {
+		drawMaze(0,40,30);
+	}
+}*/
+
