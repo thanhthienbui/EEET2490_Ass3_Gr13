@@ -343,7 +343,7 @@ void playGame(){
         uart_dec(value);
         uart_puts("\n");
 
-        if (value == 2) {
+        if (value == 2 || value == 4) {
             setMazeValue(current_level, grid_x, grid_y, 4); // Highlight wall
             x1 = spawn_x;
             y1 = spawn_y;
