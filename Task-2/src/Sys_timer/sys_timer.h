@@ -18,5 +18,6 @@
 void timer_init();
 void handle_timer_1();
 void handle_timer_3();
-
+uint64_t timer_get_tick();
+void delay_ms(uint32_t ms);
 #endif 
