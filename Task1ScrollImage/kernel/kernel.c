@@ -145,27 +145,14 @@ void drawImage() {
         }
 
         if (yf != yi) { // make sure either the input is valid to draw image, if nothing change then do not draw again
-            //output getUART results for trouble shooting
-            //uart_puts("y: "); // get Y coordinate of the image
-            //uart_dec(yi); 
-            //uart_sendc('\n');
+
 
             //draw image at a section given y coordinate and image size and frame size
             drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);
-            wait_msec(500);
             yf = yi; // get the previous coordinate
+            wait_msec(500);
         }
 
-        if (yf != yi) { // make sure either the input is valid to draw image, if nothing change then do not draw again
-            //output getUART results for trouble shooting
-            //uart_puts("y: "); // get Y coordinate of the image
-            //uart_dec(yi); 
-            //uart_sendc('\n');
-            //draw image at a section given y coordinate and image size and frame size
-            drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);
-            wait_msec(500);
-            yf = yi; // get the previous coordinate
-        }
     }
 }
 
