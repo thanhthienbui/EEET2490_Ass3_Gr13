@@ -6,6 +6,7 @@
 #include "../uart/uart1.h"
 #include "frame.h"
 #include "cmd.h"
+#include "sys_timer.h"
 
 
 
@@ -182,63 +183,3 @@ void playGame(){
     }
 }
 
-void drawImage() {
-    int yi = 0; // initial y coordinate
-    int yf = 0; // final y coordinate after getting input and move it
-    char c = ' ';
-    // set up serial console 
-    uart_init();
-    // say hello
-    framebf_init(512, 384);
-    drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);// initialize the image for TASK 1a
-    //read each char
-    uart_puts("Image is playing ...\n");
-    uart_puts("Press q to stop ");
-    //draw scrolling image
-     //read each char
-    while (1) {
-        c = getUart();// get uart C
-        if (c == 's') {
-            if (yi >= 180) { // enabling scrolling only when correct keys is inputted or when the top corrdinated has not reach the edge of the image --- s = sccroll down
-                yi = 180;
-            }
-            else {
-                yi += 10;// change the coordinate, thus moving the image through the frame
-            }
-        }
-        else if (c == 'w') { // w == scroll up 
-            if (yi <= 0) {
-                yi = 0;
-            }
-            else {
-                yi -= 10;
-            }
-        }
-        else if (c == 'q') { // exit condition
-            break;
-        }
-
-        if (yf != yi) { // make sure either the input is valid to draw image, if nothing change then do not draw again
-            //output getUART results for trouble shooting
-            //uart_puts("y: "); // get Y coordinate of the image
-            //uart_dec(yi); 
-            //uart_sendc('\n');
-
-            //draw image at a section given y coordinate and image size and frame size
-            drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);
-            wait_msec(500);
-            yf = yi; // get the previous coordinate
-        }
-
-        if (yf != yi) { // make sure either the input is valid to draw image, if nothing change then do not draw again
-            //output getUART results for trouble shooting
-            //uart_puts("y: "); // get Y coordinate of the image
-            //uart_dec(yi); 
-            //uart_sendc('\n');
-            //draw image at a section given y coordinate and image size and frame size
-            drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);
-            wait_msec(500);
-            yf = yi; // get the previous coordinate
-        }
-    }
-}
