@@ -96,6 +96,8 @@ void playGame(){
 
     uint64_t start_tick = 0;
     uint64_t end_tick = 0;
+    uint64_t level_start_tick = 0;
+    uint64_t level_end_tick = 0;
 
     while (1) {
         c = getUart();
@@ -152,6 +154,14 @@ void playGame(){
 
 
         if (value == 3) {
+            level_end_tick = timer_get_tick();
+
+            // Calculate and display the elapsed time for the level
+            uint64_t level_elapsed_ticks = level_end_tick - level_start_tick;
+            uint64_t level_elapsed_time_ms = (level_elapsed_ticks * 1000) / tick_frequency;
+            uart_puts("Level completed in: ");
+            uart_dec(level_elapsed_time_ms);
+            uart_puts(" ms\n");
             drawWinGameScreen(screen_w, screen_h);
             current_level++;
             if (current_level >= 3) {
