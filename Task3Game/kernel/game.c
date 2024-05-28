@@ -47,6 +47,9 @@ void playGame(){
     int goal_x = 0;
     int goal_y = 0;
 
+
+    // Initialize the timer
+    timer_init();
     // Function to get value from maze map
     int getMazeValue(int level, int x, int y){
         return maze_map[level][y * XLIM + x];
@@ -89,6 +92,9 @@ void playGame(){
         drawRectARGB32(x1, y1, x2, y2, char_col, 1);
     }
 
+    uint64_t start_tick = 0;
+    uint64_t end_tick = 0;
+
     while (1) {
         c = getUart();
         drawRectARGB32(x1, y1, x2, y2, BLACK, 1);
@@ -113,6 +119,9 @@ void playGame(){
         } else if (c == 'q') {
             break;
         }
+
+        // Record the start time before movement
+        start_tick = timer_get_tick();
 
         int grid_x = new_x1 / steps;
         int grid_y = new_y1 / steps;
@@ -171,14 +180,25 @@ void playGame(){
                 int tile_value = getMazeValue(current_level, i, j);
                 int color = BLACK;
                 if (tile_value == 1) color = WHITE;
-                if (tile_value == 2) color = BLACK;
-                if (tile_value == 3) color = WHITE;
+                if (tile_value == 2) color = RED;
+                if (tile_value == 3) color = CYAN;
                 if (tile_value == 4) color = RED;
                 drawRectARGB32(i * steps, j * steps, (i + 1) * steps, (j + 1) * steps, color, 1);
             }
         }
 
         drawRectARGB32(x1, y1, x2, y2, char_col, 1);
+
+        // Record the end time after movement
+        end_tick = timer_get_tick();
+
+        // Calculate elapsed time
+        uint64_t elapsed_time = end_tick - start_tick;
+        uart_puts("Elapsed time: ");
+        uart_dec(elapsed_time);
+        uart_puts(" ticks\n");
+
+
         wait_msec(100);
     }
 }
