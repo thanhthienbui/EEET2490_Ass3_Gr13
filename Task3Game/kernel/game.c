@@ -50,6 +50,8 @@ void playGame(){
 
     // Initialize the timer
     timer_init();
+    // Define the tick frequency (e.g., 1 tick per microsecond)
+    uint64_t tick_frequency = 1000000;
     // Function to get value from maze map
     int getMazeValue(int level, int x, int y){
         return maze_map[level][y * XLIM + x];
@@ -180,7 +182,7 @@ void playGame(){
                 int tile_value = getMazeValue(current_level, i, j);
                 int color = BLACK;
                 if (tile_value == 1) color = WHITE;
-                if (tile_value == 2) color = RED;
+                if (tile_value == 2) color = BLACK;
                 if (tile_value == 3) color = CYAN;
                 if (tile_value == 4) color = RED;
                 drawRectARGB32(i * steps, j * steps, (i + 1) * steps, (j + 1) * steps, color, 1);
@@ -193,10 +195,11 @@ void playGame(){
         end_tick = timer_get_tick();
 
         // Calculate elapsed time
-        uint64_t elapsed_time = end_tick - start_tick;
+        uint64_t elapsed_ticks = end_tick - start_tick;
+        uint64_t elapsed_time = (elapsed_ticks * 1000) / tick_frequency;
         uart_puts("Elapsed time: ");
         uart_dec(elapsed_time);
-        uart_puts(" ticks\n");
+        uart_puts(" m/s\n");
 
 
         wait_msec(100);
