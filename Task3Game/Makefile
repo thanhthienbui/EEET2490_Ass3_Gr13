@@ -26,7 +26,6 @@ uart0_build: ./uart/uart0.c
 kernel8.img: ./build/boot.o ./build/uart.o $(OFILES)
 	aarch64-none-elf-ld -nostdlib ./build/boot.o ./build/uart.o $(OFILES) -T ./kernel/link.ld -o ./build/kernel8.elf
 	aarch64-none-elf-objcopy -O binary ./build/kernel8.elf kernel8.img
-
 clean:
 	del .\build\kernel8.elf .\build\*.o *.img
 

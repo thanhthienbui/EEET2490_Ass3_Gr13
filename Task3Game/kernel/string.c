@@ -72,7 +72,6 @@ void clr_buffer(char* str) {
     }
 }
 
-
 // find substring in a main string
 int sub_string(char* main_str, char* sub_str) {
     while (*sub_str != '\0') {
