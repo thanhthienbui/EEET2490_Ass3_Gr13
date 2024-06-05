@@ -7,24 +7,24 @@
 // Enable interrupt
 void enable_irq(){  //enable for timer 1
     /* Enable the interrupt for timer 1, timer 3 and AUX */
-    ENABLE_IRQS_1 |= (1 << SYS_TIMER_MATCH_1_INT)|(1 << AUX_INT)|(1<<SYS_TIMER_MATCH_3_INT); //interrupt for timer 1
+    // ENABLE_IRQS_1 |= (1 << SYS_TIMER_MATCH_1_INT)|(1 << AUX_INT)|(1<<SYS_TIMER_MATCH_3_INT); //interrupt for timer 1
     
     /* interrupt for Mini UART */
     // ENABLE_IRQS_1 |= (1 << AUX_INT); 
     
-    /* interrupt for TIMER 1 */
+    /* interrupt for TIMER 1 = 1s */
     // ENABLE_IRQS_1 |= (1 << SYS_TIMER_MATCH_1_INT);
     
-    /* interrupt for TIMER 3 */
-    // ENABLE_IRQS_1 |= (1 << SYS_TIMER_MATCH_3_INT);
+    /* interrupt for TIMER 3 = 0.25s*/
+    ENABLE_IRQS_1 |= (1 << SYS_TIMER_MATCH_3_INT);
 
     
-    /* Double check for value in the register
+    // /* Double check for value in the register
     uint32_t irq = ENABLE_IRQS_1;
     uart1_puts("\nENABLE_IRQ_1 reg: ");
     uart1_bi(irq);
     uart1_puts("\nCompleted\n");
-    */
+    // */
 }
 // Disable interrupt 
 void disable_irq() {

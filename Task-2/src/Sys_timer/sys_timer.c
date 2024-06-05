@@ -15,9 +15,9 @@ void timer_init() {
     TIMER_CONTROL_STATUS &= ~(0xF<<0);  //clear status of timer 
     
     // update next value for timer 1
-    cur_val_1 = TIMER_COUNTER_LOW; 
-    cur_val_1 += interval_1;
-    TIMER_COMPARE_1 += cur_val_1;
+    // cur_val_1 = TIMER_COUNTER_LOW; 
+    // cur_val_1 += interval_1;
+    // TIMER_COMPARE_1 += cur_val_1;
     
     // update next value for timer 3
     cur_val_3 = TIMER_COUNTER_LOW; 
