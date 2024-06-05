@@ -6,6 +6,7 @@
 #include "../uart/uart1.h"
 #include "frame.h"
 #include "cmd.h"
+#include "sys_timer.h"
 
 
 
@@ -46,6 +47,11 @@ void playGame(){
     int goal_x = 0;
     int goal_y = 0;
 
+
+    // Initialize the timer
+    timer_init();
+    // Define the tick frequency (e.g., 1 tick per microsecond)
+    uint64_t tick_frequency = 1000000;
     // Function to get value from maze map
     int getMazeValue(int level, int x, int y){
         return maze_map[level][y * XLIM + x];
@@ -88,6 +94,11 @@ void playGame(){
         drawRectARGB32(x1, y1, x2, y2, char_col, 1);
     }
 
+    uint64_t start_tick = 0;
+    uint64_t end_tick = 0;
+    uint64_t level_start_tick = 0;
+    uint64_t level_end_tick = 0;
+
     while (1) {
         c = getUart();
         drawRectARGB32(x1, y1, x2, y2, BLACK, 1);
@@ -112,6 +123,9 @@ void playGame(){
         } else if (c == 'q') {
             break;
         }
+
+        // Record the start time before movement
+        start_tick = timer_get_tick();
 
         int grid_x = new_x1 / steps;
         int grid_y = new_y1 / steps;
@@ -140,6 +154,14 @@ void playGame(){
 
 
         if (value == 3) {
+            level_end_tick = timer_get_tick();
+
+            // Calculate and display the elapsed time for the level
+            uint64_t level_elapsed_ticks = level_end_tick - level_start_tick;
+            uint64_t level_elapsed_time_ms = (level_elapsed_ticks * 1000) / tick_frequency;
+            uart_puts("Level completed in: ");
+            uart_dec(level_elapsed_time_ms);
+            uart_puts(" ms\n");
             drawWinGameScreen(screen_w, screen_h);
             current_level++;
             if (current_level >= 3) {
@@ -171,74 +193,26 @@ void playGame(){
                 int color = BLACK;
                 if (tile_value == 1) color = WHITE;
                 if (tile_value == 2) color = BLACK;
-                if (tile_value == 3) color = WHITE;
+                if (tile_value == 3) color = CYAN;
                 if (tile_value == 4) color = RED;
                 drawRectARGB32(i * steps, j * steps, (i + 1) * steps, (j + 1) * steps, color, 1);
             }
         }
 
         drawRectARGB32(x1, y1, x2, y2, char_col, 1);
+
+        // Record the end time after movement
+        end_tick = timer_get_tick();
+
+        // Calculate elapsed time
+        uint64_t elapsed_ticks = end_tick - start_tick;
+        uint64_t elapsed_time = (elapsed_ticks * 1000) / tick_frequency;
+        uart_puts("Elapsed time: ");
+        uart_dec(elapsed_time);
+        uart_puts(" m/s\n");
+
+
         wait_msec(100);
     }
 }
 
-void drawImage() {
-    int yi = 0; // initial y coordinate
-    int yf = 0; // final y coordinate after getting input and move it
-    char c = ' ';
-    // set up serial console 
-    uart_init();
-    // say hello
-    framebf_init(512, 384);
-    drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);// initialize the image for TASK 1a
-    //read each char
-    uart_puts("Image is playing ...\n");
-    uart_puts("Press q to stop ");
-    //draw scrolling image
-     //read each char
-    while (1) {
-        c = getUart();// get uart C
-        if (c == 's') {
-            if (yi >= 180) { // enabling scrolling only when correct keys is inputted or when the top corrdinated has not reach the edge of the image --- s = sccroll down
-                yi = 180;
-            }
-            else {
-                yi += 10;// change the coordinate, thus moving the image through the frame
-            }
-        }
-        else if (c == 'w') { // w == scroll up 
-            if (yi <= 0) {
-                yi = 0;
-            }
-            else {
-                yi -= 10;
-            }
-        }
-        else if (c == 'q') { // exit condition
-            break;
-        }
-
-        if (yf != yi) { // make sure either the input is valid to draw image, if nothing change then do not draw again
-            //output getUART results for trouble shooting
-            //uart_puts("y: "); // get Y coordinate of the image
-            //uart_dec(yi); 
-            //uart_sendc('\n');
-
-            //draw image at a section given y coordinate and image size and frame size
-            drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);
-            wait_msec(500);
-            yf = yi; // get the previous coordinate
-        }
-
-        if (yf != yi) { // make sure either the input is valid to draw image, if nothing change then do not draw again
-            //output getUART results for trouble shooting
-            //uart_puts("y: "); // get Y coordinate of the image
-            //uart_dec(yi); 
-            //uart_sendc('\n');
-            //draw image at a section given y coordinate and image size and frame size
-            drawImageARGB32(0, yi, 564, 564, 512, 384, epd_bitmap_sample);
-            wait_msec(500);
-            yf = yi; // get the previous coordinate
-        }
-    }
-}

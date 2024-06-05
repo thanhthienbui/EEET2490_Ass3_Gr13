@@ -4,4 +4,3 @@ void drawWinGameScreen(int screen_w, int screen_h);
 
 void playGame();
 
-void drawImage();
